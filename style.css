@@ -1,0 +1,266 @@
+/* 1. Reset and Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base font size for rem units */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Lato', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Dark gray for text */
+    background-color: #f0f2f5; /* Light gray-blue background */
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 2. Typography */
+h1, h2 {
+    font-weight: 700; /* Bolder for headings */
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #1a237e; /* Dark blue for main title */
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #283593; /* Slightly lighter blue for section titles */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #c5cae9; /* Indigo accent border */
+    padding-bottom: 0.5rem;
+}
+
+.results-subtitle {
+    font-size: 1.2rem;
+    color: #303f9f; /* Indigo, slightly darker than section title */
+    margin-top: 1.5rem; /* Space above the subtitle */
+    margin-bottom: 0.5rem; /* Space below the subtitle, before the first item */
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #dee2e6; /* Lighter border for subtitle */
+}
+
+label {
+    display: block;
+    font-weight: 700; /* Bolder labels */
+    margin-bottom: 0.5rem;
+    color: #3949ab; /* Indigo for labels */
+    font-size: 0.9rem;
+}
+
+input[type="number"],
+button {
+    font-family: inherit; /* Ensures consistency */
+    font-size: 1rem;
+}
+
+/* 3. Layout - Container and Sections */
+.container {
+    background-color: #ffffff; /* White background for container */
+    padding: 2rem;
+    border-radius: 12px; /* Softer, larger border radius */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+    width: 100%;
+    max-width: 900px;
+}
+
+.input-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 2rem; /* Space between buy and sell sections */
+    margin-bottom: 2rem;
+}
+
+.buy-side,
+.sell-side,
+.results-section {
+    background-color: #f8f9fa; /* Very light gray for sections */
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0; /* Softer border */
+    border-radius: 8px;
+}
+
+/* 4. Input Fields */
+.buy-side div, /* Targeting the divs wrapping label and input */
+.sell-side div {
+    margin-bottom: 1rem; /* Space between input groups */
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da; /* Standard input border color */
+    border-radius: 6px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #3f51b5; /* Indigo border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25); /* Focus shadow */
+}
+
+input[type="number"]::placeholder {
+    color: #adb5bd; /* Lighter placeholder text */
+}
+
+/* 5. Results Section */
+.results-section div { /* This styles each row in the results section */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0; /* Default padding for result items */
+    border-bottom: 1px solid #e9ecef; /* Light separator */
+    font-size: 1rem;
+}
+
+/* Ensure items directly following a subtitle don't have excessive top padding from a previous border */
+.results-subtitle + div {
+    /* padding-top: 0.5rem; /* Adjust if needed */
+}
+
+
+.results-section div:last-of-type { /* The very last div in results-section */
+    border-bottom: none;
+}
+
+/* If a div is the last one *within a subtitle group* but not the *overall last*, it should still have a border.
+   The default rule handles this. We only remove border for the absolute last child of .results-section. */
+
+.results-section label {
+    margin-bottom: 0; /* Override general label margin */
+    color: #495057; /* Darker gray for result labels */
+    font-weight: normal; /* Normal weight for result labels */
+}
+
+.results-section span {
+    font-weight: 700; /* Bold for result values */
+    color: #1a237e; /* Dark blue for result values */
+    font-size: 1.1rem;
+}
+
+/* Highlighting key results */
+#result-net-initial-investment,
+#result-monthly-cashflow {
+    font-size: 1.2rem; /* Slightly larger */
+    color: #1e88e5; /* Primary blue for these values */
+}
+
+/* Styling for the "Potential Infinite Return!" message (dynamically added to #result-net-initial-investment) */
+#result-net-initial-investment.infinite-return-positive { /* Class to be added by JS for styling */
+    color: #2e7d32 !important; /* Green, ensure it overrides previous color */
+    font-weight: 700;
+}
+#result-net-initial-investment.infinite-return-positive::after {
+    content: " (Potential Infinite Return!)"; /* Content moved to CSS */
+    font-style: italic;
+    font-size: 0.9em; /* Slightly smaller than the value itself */
+}
+
+
+/* 6. Button Styling */
+#calculate-button {
+    background-color: #3f51b5; /* Indigo - primary action color */
+    color: #ffffff;
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+    margin-top: 1rem; /* Space above the button */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#calculate-button:hover {
+    background-color: #303f9f; /* Darker indigo on hover */
+}
+
+#calculate-button:active {
+    background-color: #283593; /* Even darker on active/click */
+    transform: translateY(1px); /* Subtle press effect */
+}
+
+/* 7. Responsiveness (Media Queries) */
+@media (max-width: 800px) { /* Tablet and smaller */
+    .input-sections {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 1.5rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile */
+    html {
+        font-size: 15px; /* Slightly smaller base font for small devices */
+    }
+
+    .container {
+        padding: 1rem;
+        margin: 0.5rem; /* Add some margin for very small screens */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Softer shadow on mobile */
+    }
+
+    input[type="number"],
+    #calculate-button {
+        padding: 0.65rem 0.9rem; /* Adjust padding for smaller inputs/button */
+        font-size: 0.95rem;
+    }
+
+    .results-section div {
+        flex-direction: column; /* Stack label and value */
+        align-items: flex-start;
+    padding: 0.65rem 0; /* Adjusted padding for stacked items */
+    }
+
+    .results-section span {
+        margin-top: 0.25rem; /* Space between label and value when stacked */
+        text-align: left;
+        font-size: 1.05rem; /* Slightly larger for readability on mobile */
+    }
+
+    .results-subtitle {
+        font-size: 1.1rem; /* Adjust subtitle font size for mobile */
+        margin-top: 1.2rem;
+    }
+}
+
+/* Accessibility: Ensure focus indicators are clear (already handled by input:focus) */
+/* Color contrast: Colors chosen aim for WCAG AA compliance, but should be verified with tools */
+/* Example: #333 on #f0f2f5 (text on bg) is good. #1a237e on #fff (title on container bg) is good. */
+/* Labels are programmatically associated via "for" attribute in HTML. */
+
+/* Utility class for error messages (from previous style, kept for potential use) */
+.error-message {
+    color: #d32f2f; /* Red for errors */
+    font-size: 0.9em;
+    margin-top: 0.25rem;
+    display: block; /* Ensure it takes its own line */
+}

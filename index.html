@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Finance Deal Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Seller Finance Deal Calculator</h1>
+
+        <div class="input-sections">
+            <div class="buy-side">
+                <h2>Buy Side</h2>
+                <div>
+                    <label for="buy-purchase-price">Purchase Price:</label>
+                    <input type="number" id="buy-purchase-price" placeholder="Enter purchase price">
+                </div>
+                <div>
+                    <label for="buy-down-payment">Down Payment:</label>
+                    <input type="number" id="buy-down-payment" placeholder="Enter down payment">
+                </div>
+                <div>
+                    <label for="buy-loan-term">Loan Term (months):</label>
+                    <input type="number" id="buy-loan-term" placeholder="Enter loan term in months">
+                </div>
+                <div>
+                    <label for="buy-interest-rate">Annual Interest Rate (%):</label>
+                    <input type="number" id="buy-interest-rate" placeholder="Enter annual interest rate">
+                </div>
+            </div>
+
+            <div class="sell-side">
+                <h2>Sell Side</h2>
+                <div>
+                    <label for="sell-selling-price">Selling Price:</label>
+                    <input type="number" id="sell-selling-price" placeholder="Enter selling price">
+                </div>
+                <div>
+                    <label for="sell-down-payment">Down Payment Received:</label>
+                    <input type="number" id="sell-down-payment" placeholder="Enter down payment received">
+                </div>
+                <div>
+                    <label for="sell-loan-term">Loan Term (months):</label>
+                    <input type="number" id="sell-loan-term" placeholder="Enter loan term in months">
+                </div>
+                <div>
+                    <label for="sell-interest-rate">Annual Interest Rate (%):</label>
+                    <input type="number" id="sell-interest-rate" placeholder="Enter annual interest rate">
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h2>Results</h2>
+            <div>
+                <label for="result-buy-monthly-payment">Buy Side Monthly Payment:</label>
+                <span id="result-buy-monthly-payment"></span>
+            </div>
+            <div>
+                <label for="result-sell-monthly-payment">Sell Side Monthly Payment:</label>
+                <span id="result-sell-monthly-payment"></span>
+            </div>
+            <div>
+                <label for="result-net-initial-investment">Net Initial Investment:</label>
+                <span id="result-net-initial-investment"></span>
+            </div>
+            <div>
+                <label for="result-monthly-cashflow">Monthly Cashflow:</label>
+                <span id="result-monthly-cashflow"></span>
+            </div>
+
+            <h3 class="results-subtitle">Buy Side Loan Details</h3>
+            <div>
+                <label for="buy-total-principal">Total Principal Paid:</label>
+                <span id="buy-total-principal"></span>
+            </div>
+            <div>
+                <label for="buy-total-interest">Total Interest Paid:</label>
+                <span id="buy-total-interest"></span>
+            </div>
+
+            <h3 class="results-subtitle">Sell Side Loan Details</h3>
+            <div>
+                <label for="sell-total-principal">Total Principal Received:</label>
+                <span id="sell-total-principal"></span>
+            </div>
+            <div>
+                <label for="sell-total-interest">Total Interest Received:</label>
+                <span id="sell-total-interest"></span>
+            </div>
+
+            <h3 class="results-subtitle">Overall Loan Summary</h3>
+            <div>
+                <label for="total-cashflow-over-term">Total Cashflow Over Term:</label>
+                <span id="total-cashflow-over-term"></span>
+            </div>
+        </div>
+
+        <button id="calculate-button">Calculate</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
